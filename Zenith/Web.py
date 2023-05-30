@@ -15,11 +15,10 @@ class Server(BaseHTTPRequestHandler):
 class WApp(Server):
     def __init__(self) -> None:
         self.port = 3000
-        self.host = "127.0.0.1"
+        self.host = 'localhost'
         self.devServer = False
         self.static_url_path = "static"
         self.name = "Zenith App"
-        self.icon = "favicon.ico"
         self.logging = True
     
     class set:
@@ -31,16 +30,14 @@ class WApp(Server):
         time_stamp = current_time.timestamp()
 
         webServer = HTTPServer((self.host, self.port), Server)
-        if self.logging:
-            print(f"Starting server at {self.host}:{self.port}")
-            if self.devServer:
-                print(f"\t• Running as development server")
-            print(f"\t• Started {datetime.datetime.fromtimestamp(time_stamp)}")
+        print(f"Starting server at http://{self.host}:{self.port}")
+        if self.devServer:
+            print(f"\t• Running as development server")
+        print(f"\t• Started {datetime.datetime.fromtimestamp(time_stamp)}\n")
         try:
             webServer.serve_forever()
         except  KeyboardInterrupt:
             pass
+        webServer.server_close()
+        print("Server stopped.")
 
-app = WApp()
-app.devServer = True
-app.serve()
