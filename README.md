@@ -2,3 +2,17 @@
 
 # Zenith
  Zenith is a powerful Python framework that revolutionizes web development by enabling declarative and efficient UI components for building interactive and scalable websites.
+
+# Usage 
+## Installation 
+```
+pip install ZenithLib
+```
+## Start a server
+```python
+import Zenith
+
+app = Zenith.WApp()
+
+app.serve()
+```
