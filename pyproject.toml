@@ -1,0 +1,22 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "ZenithLib"
+version = "0.0.06"
+authors = [
+  { name="Ryan Rudd", email="rsrudd@gmail.com" },
+]
+description = "Zenith is a powerful Python framework that revolutionizes web development by enabling declarative and efficient UI components for building interactive and scalable websites."
+readme = "README.md"
+requires-python = ">=3.7"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+
+[project.urls]
+"Homepage" = "https://github.com/Ryan-Rudd/Zenith"
+"Bug Tracker" = "https://github.com/Ryan-Rudd/Zenith/issues"
