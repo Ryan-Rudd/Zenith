@@ -16,3 +16,28 @@ app = Zenith.WApp()
 
 app.serve()
 ```
+
+## Creating a basic webpage
+```python
+
+import Zenith
+
+app = Zenith.WApp()
+
+builder = Builder({"HomePage": """
+    <Container>
+        <Header idName="header">Hello from Zenith</Header>
+    </Container>
+"""})
+
+stylesheet = Stylesheet(builder, "HomePage", {
+    "id.header": 
+    {
+        "foreColor": "#000",
+        "fontSize": 22
+    }
+})
+
+app.render(Builder)
+app.serve()
+```
