@@ -41,7 +41,4 @@ class WApp(Server):
         webServer.server_close()
         print("Server stopped.")
 
-content = "<Header idName='header'>Hello World</Header>"
-test_dict: dict = { "Hello": content }
 
-test_dict.keys(hell)
