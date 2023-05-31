@@ -13,19 +13,11 @@ class Server(BaseHTTPRequestHandler):
 
         for route, response in self.ROUTES:
             if self.path == f"/{route}":
-                self.wfile.write(response.encode("utf-8"))
+                self.wfile.write(f"<h1>{route}</h1>".encode('utf-8'))
                 return
 
         self.wfile.write(b"<h1>Zenith Server</h1>")
-    
-    def getPath(self, routeName):
-        if self.path == f"/{routeName}":
-            self.send_response(200)
-            self.send_header('Content-type', 'text/html')
-            self.end_headers()
-            self.wfile.write("<b> Hello World !</b>"
-                             + "<br><br>Current time: " + str(datetime.datetime.now()))
-        
+
 class WApp(Server):
 
     def __init__(self) -> None:
@@ -57,5 +49,6 @@ class WApp(Server):
 
 app = WApp()
 
-app.get("/hello", "hello")
+app.get("/", "hello")
+
 app.serve()
