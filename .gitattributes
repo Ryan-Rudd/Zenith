@@ -1,4 +1,25 @@
-# Auto detect text files and perform LF normalization
-* text=auto
+# Set file-specific attributes
 *.zenith linguist-language=Zenith
 *.zenith linguist-color=#800080
+*.py linguist-language=Python
+*.css linguist-language=Python
+*.js linguist-language=Python
+
+# Ignore certain files and directories
+*.log linguist-vendored
+.idea/ linguist-generated
+/node_modules/ linguist-generated
+dist/ linguist-generated
+
+# Treat specific files as binary
+*.png binary
+*.jpg binary
+*.gif binary
+
+# Set line ending preferences
+*.txt eol=lf
+*.md eol=lf
+
+# Set merge driver for specific file types
+*.docx merge=keepMine
+*.xlsx merge=keepTheirs
