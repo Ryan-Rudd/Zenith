@@ -364,9 +364,13 @@ class RecognizedStylesheetAttributes(object):
 class Stylesheet:
     def new(style: dict, **kwargs):
         styleAttributes = RecognizedStylesheetAttributes().css_attributes
+        stylesheet = {}
         for attribute in style:
             if attribute not in styleAttributes:
                 print(f"Unrecognized Style Attribute \"{attribute}\"")
+            else:
+                stylesheet[attribute] = style[attribute]
+        return stylesheet
 
 
 style = Stylesheet.new({
@@ -374,4 +378,4 @@ style = Stylesheet.new({
     'height': 20,
     'someother': 15
 })
-
+print(style)
