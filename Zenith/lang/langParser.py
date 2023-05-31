@@ -1,29 +1,10 @@
 import re
 
-class ParserTokens:
-    BRACKET_OPEN = "<"
-    BRACKET_CLOSE = ">"
-    BRACKET_END = "/"
-    EQUALS = "="
-    QUOTATION = "\""
-    
-    
 def parse_string(input_string):
-    pattern = re.compile(
-        fr"\s*({re.escape(ParserTokens.BRACKET_OPEN)}"
-        fr"|{re.escape(ParserTokens.BRACKET_CLOSE)}"
-        fr"|{re.escape(ParserTokens.BRACKET_END)}"
-        fr"|{re.escape(ParserTokens.EQUALS)}"
-        fr"|{re.escape(ParserTokens.QUOTATION)})"
-    )
-
-    tokens = pattern.split(input_string)
-    tokens = [token.strip() for token in tokens if token.strip()]  # Remove empty and whitespace-only tokens
-
+    # Tokenize open tags, close tags, and text content
+    pattern = re.compile(r"(<[^>]*>)|([^<]+)")
+    tokens = pattern.findall(input_string)
+    # Flatten list of tuples and remove whitespace-only tokens
+    tokens = [token for sub in tokens for token in sub if token.strip()]
     return tokens
 
-print(parse_string("""
-    <Container>
-        <Header idName="header">Hello from Zenith</Header>
-    </Container>
-    """))
