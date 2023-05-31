@@ -40,17 +40,33 @@ app = Zenith.WApp()
 
 homePageContent = """
     <Container>
-        <Header idName="header">Hello world from Zenith</Header>
+        <Header>Welcome to Zenith</Header>
+        <Paragraph>A Python framework for web development</Paragraph>
     </Container>
 """
 
 builder = Zenith.Builder({"home": homePageContent})
 built = builder.Build()
 
-for route in builder.getRoutes():
-    app.register_route(f'{route}', built[route])
+style = Zenith.Stylesheet.new({
+    'body': {
+        'background-color': '#f8f9fa',
+        'font-family': 'Arial, sans-serif',
+    },
+    'h1': {
+        'color': '#007BFF',
+        'font-size': '32px',
+    },
+    'p': {
+        'color': '#6c757d',
+        'font-size': '16px',
+    },
+})
 
+style.apply(built, "home")
+app.register_route('/', built['home'])
 app.serve()
+
 ```
 
 # Documentation
