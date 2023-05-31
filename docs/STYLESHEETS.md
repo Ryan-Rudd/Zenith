@@ -1,10 +1,10 @@
 # Example
 ```python
-stylesheet = Stylesheet(builder, "HomePage", {
-    "id.header": 
-    {
-        "foreColor": "#000",
-        "fontSize": 22
-    }
+style = Stylesheet.new({
+    'width': 20,
+    'height': 20,
+    'someother': 15
 })
+
+style.apply(BUILDER, "home")
 ```

@@ -1,3 +1,4 @@
+from .Builder import Builder
 class RecognizedStylesheetAttributes(object):
     def __init__(self) -> None:
         self.css_attributes = [
@@ -360,22 +361,32 @@ class RecognizedStylesheetAttributes(object):
             'z-index'
         ]
             
-            
+class Style:
+    def __init__(self):
+        self.STYLE_DICTIONARY = dict()
+
+    def apply(self, BUILDER: Builder, BUILDER_ROUTE: str):
+        STYLE_TAG = "style"
+        FINAL_DATA = str
+        for SELECTOR in self.STYLE_DICTIONARY:
+            print(SELECTOR)
+
+        ...
+
+
 class Stylesheet:
-    def new(style: dict, **kwargs):
+    def new(style: dict, **kwargs) -> Style:
         styleAttributes = RecognizedStylesheetAttributes().css_attributes
         stylesheet = {}
-        for attribute in style:
-            if attribute not in styleAttributes:
-                print(f"Unrecognized Style Attribute \"{attribute}\"")
-            else:
-                stylesheet[attribute] = style[attribute]
-        return stylesheet
+        for selector, attributes in style.items():
+            for attribute, value in attributes.items():
+                if attribute not in styleAttributes:
+                    print(f"Unrecognized Style Attribute \"{attribute}\"")
+                else:
+                    if selector not in stylesheet:
+                        stylesheet[selector] = {}
+                    stylesheet[selector][attribute] = value
+        stylesheet_object = Style()
+        stylesheet_object.STYLE_DICTIONARY = stylesheet
+        return stylesheet_object
 
-
-style = Stylesheet.new({
-    'width': 20,
-    'height': 20,
-    'someother': 15
-})
-print(style)

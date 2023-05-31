@@ -1,5 +1,6 @@
 import Zenith
 
+
 app = Zenith.WApp()
 
 homePageContent = """
@@ -19,5 +20,21 @@ built = builder.Build()
 
 for route in builder.getRoutes():
     app.register_route(f'{route}', built[route])
-    
+
+style = Zenith.Stylesheet.new({
+    'id.some_button': {
+        'width': 20,
+        'height': 20,
+        'someother': 15
+    },
+    'class.some_button': {
+        'width': 20,
+        'height': 20,
+        'someother': 15
+    }
+})
+
+style.apply(builder, "home")
+print(style.STYLE_DICTIONARY)
+
 app.serve()
