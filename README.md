@@ -1,9 +1,6 @@
 # Zenith
 ![Python Version](https://img.shields.io/badge/Python-3.8-brightgreen.svg)
 ![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
-![Build Status](https://img.shields.io/github/workflow/status/Ryan-Rudd/Zenith/CI)
-![Coverage](https://img.shields.io/codecov/c/github/Ryan-Rudd/Zenith)
-![Code Style](https://img.shields.io/badge/code%20style-black-000000.svg)
 ![PyPI Version](https://img.shields.io/pypi/v/ZenithLib)
 ![Downloads](https://img.shields.io/pypi/dm/ZenithLib)
 ![GitHub Issues](https://img.shields.io/github/issues/Ryan-Rudd/Zenith)
