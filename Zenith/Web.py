@@ -2,6 +2,7 @@ import datetime
 from http.server import BaseHTTPRequestHandler, HTTPServer
 
 class CustomServer(BaseHTTPRequestHandler):
+    
     HEADER_VALUE = "text/html"
     HEADER_TYPE = "Content-type"
     BUILT_ROUTES = {}
@@ -12,6 +13,8 @@ class CustomServer(BaseHTTPRequestHandler):
         self.end_headers()
 
         path = self.path[1:]  # Remove the leading '/' from the path
+        if path == "":
+            path = "/"  # Set the path to "/" for the home route
         if path in self.BUILT_ROUTES:
             response = self.BUILT_ROUTES[path]
             self.wfile.write(response.encode('utf-8'))
@@ -19,7 +22,9 @@ class CustomServer(BaseHTTPRequestHandler):
             self.send_response(404)
             self.wfile.write(b"<h1>404 Not Found</h1>")
 
+
 class WApp:
+    INITAL_ROUTE = "/"
     def __init__(self):
         self.port = 3000
         self.host = 'localhost'
