@@ -22,17 +22,17 @@ for route in builder.getRoutes():
     app.register_route(f'{route}', built[route])
 
 style = Zenith.Stylesheet.new({
-    'id.some_button': {
+    'id.some_button_id': {
         'width': 20,
         'height': 20,
     },
-    'class.some_button': {
+    'class.some_button_class': {
         'width': 20,
         'height': 20,
     }
 })
 
-style.apply(builder, "home")
+print(style.apply(builder, "home"))
 # print(style.STYLE_DICTIONARY)
 
 app.serve()
