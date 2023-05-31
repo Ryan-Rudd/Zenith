@@ -150,7 +150,6 @@ def transpile_to_html(node):
 
     return result
 
-
 def open_tag(tag_name, attributes):
     result = f"<{tag_name}"
 
@@ -162,16 +161,10 @@ def open_tag(tag_name, attributes):
 
     return result
 
-
 def process_content(content):
     return content or ""
-
-
 def close_tag(tag_name):
     return f"</{tag_name}>"
-
-
-
 
 def transpile_attribute_name(attribute_name):
     attribute_mapping = {
