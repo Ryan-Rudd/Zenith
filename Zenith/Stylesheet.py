@@ -363,7 +363,8 @@ class RecognizedStylesheetAttributes(object):
             
 class Style:
     def __init__(self):
-        self.STYLE_DICTIONARY = dict()
+        self.STYLE_DICTIONARY = {}
+        self.KEYFRAMES_DICTIONARY = {}
 
     def formatSelector(self, selector):
         TYPE_OF_SELECTOR = ["class", "id"]
@@ -403,26 +404,40 @@ class Style:
                 CSS_CONVERTED += f"{attribute}: {value};"
             CSS_CONVERTED += "} "
 
-        BUILT_CONTENT = BUILT_OBJECT.get(BUILDER_ROUTE)
-        CSS_TRANSPILED_CONTENT = BUILT_CONTENT + f"\n<style>{CSS_CONVERTED}</style>"
-        BUILT_OBJECT[BUILDER_ROUTE] = CSS_TRANSPILED_CONTENT
-        return
+        KEYFRAMES_CONVERTED = ""
+        for keyframe_name, keyframe_data in self.KEYFRAMES_DICTIONARY.items():
+            KEYFRAMES_CONVERTED += f"@keyframes {keyframe_name}" + "{"
+            for keyframe_step, keyframe_properties in keyframe_data.items():
+                KEYFRAMES_CONVERTED += f"{keyframe_step}" + "{"
+                for attribute, value in keyframe_properties.items():
+                    KEYFRAMES_CONVERTED += f"{attribute}: {value};"
+                KEYFRAMES_CONVERTED += "} "
+            KEYFRAMES_CONVERTED += "} "
 
+        BUILT_CONTENT = BUILT_OBJECT.get(BUILDER_ROUTE)
+        CSS_TRANSPILED_CONTENT = BUILT_CONTENT + f"\n<style>{CSS_CONVERTED} {KEYFRAMES_CONVERTED}</style>"
+        BUILT_OBJECT[BUILDER_ROUTE] = CSS_TRANSPILED_CONTENT
 
 
 class Stylesheet:
     def new(style: dict, **kwargs) -> Style:
         styleAttributes = RecognizedStylesheetAttributes().css_attributes
         stylesheet = {}
+        keyframes = {}
         for selector, attributes in style.items():
-            for attribute, value in attributes.items():
-                if attribute not in styleAttributes:
-                    print(f"Unrecognized Style Attribute \"{attribute}\" in @Stylesheet")
-                    exit(1)
-                else:
-                    if selector not in stylesheet:
-                        stylesheet[selector] = {}
-                    stylesheet[selector][attribute] = value
+            if selector.startswith('@keyframes'):
+                keyframe_name = selector.split(' ')[1]
+                keyframes[keyframe_name] = attributes
+            else:
+                for attribute, value in attributes.items():
+                    if attribute not in styleAttributes:
+                        print(f"Unrecognized Style Attribute \"{attribute}\" in @Stylesheet")
+                        exit(1)
+                    else:
+                        if selector not in stylesheet:
+                            stylesheet[selector] = {}
+                        stylesheet[selector][attribute] = value
         stylesheet_object = Style()
         stylesheet_object.STYLE_DICTIONARY = stylesheet
+        stylesheet_object.KEYFRAMES_DICTIONARY = keyframes
         return stylesheet_object
