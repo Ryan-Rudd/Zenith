@@ -29,9 +29,13 @@ def build_ast(tokens):
 
             # Handle attributes
             for part in tag_parts:
-                attr_name, attr_value = part.split("=")
-                attr_value = attr_value.strip('"')
-                node.set_attribute(attr_name, attr_value)
+                if "=" in part:
+                    attr_name, attr_value = part.split("=")
+                    attr_value = attr_value.strip('"')
+                    node.set_attribute(attr_name, attr_value)
+                else:
+                    attr_name = part
+                    node.set_attribute(attr_name, "")
 
             if stack:
                 parent_node = stack[-1]
@@ -49,6 +53,7 @@ def build_ast(tokens):
             node.set_content(token)
 
     return root
+
 
 def print_ast(node, indent=""):
     print(f"{indent}<{node.tag_name}>")

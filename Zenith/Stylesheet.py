@@ -373,6 +373,9 @@ class Style:
                 formatted_selector['type'] = selector_type
                 formatted_selector['name'] = selector[len(selector_type) + 1:]
                 break
+        if 'type' not in formatted_selector:
+            formatted_selector['type'] = 'element'
+            formatted_selector['name'] = selector
         return formatted_selector
 
     def apply(self, BUILT_OBJECT: dict, BUILDER_ROUTE: str):
@@ -403,7 +406,8 @@ class Style:
         BUILT_CONTENT = BUILT_OBJECT.get(BUILDER_ROUTE)
         CSS_TRANSPILED_CONTENT = BUILT_CONTENT + f"\n<style>{CSS_CONVERTED}</style>"
         BUILT_OBJECT[BUILDER_ROUTE] = CSS_TRANSPILED_CONTENT
-        return 
+        return
+
 
 
 class Stylesheet:
