@@ -1,6 +1,6 @@
-import lang.langAST
-import lang.langParser
-import lang.langTranspiler
+from .lang import langParser
+from .lang import langAST
+from .lang import langTranspiler
 
 class BuilderConstructedObject(object):
     def __init__(self) -> None:
@@ -18,13 +18,13 @@ class Builder():
             NAME = BUILD_ROUTE
             BUILD_PRE_BUILD_CONTENT = self.routes[BUILD_ROUTE]
             
-            tokens = lang.langParser.parse_string(BUILD_PRE_BUILD_CONTENT)
-            ast = lang.langAST.build_ast(tokens)
-            transpiled = lang.langTranspiler.transpile_to_html(ast)
+            tokens = langParser.parse_string(BUILD_PRE_BUILD_CONTENT)
+            ast = langAST.build_ast(tokens)
+            transpiled = langTranspiler.transpile_to_html(ast)
             
             NEW_BUILDER_BUILT[NAME] = str(transpiled)
             
-            return
+            return NEW_BUILDER_BUILT
             
     def getRoutes(self):
         ROUTES = []
@@ -33,14 +33,3 @@ class Builder():
         return ROUTES
     
     
-    
-homePageContent = """
-    <Container>
-        <Header idName="header">Hello from Zenith</Header>
-    </Container>
-    """
-    
-builder = Builder({"homePage": homePageContent})
-builder.Build()
-
-routes = builder.getRoutes()
