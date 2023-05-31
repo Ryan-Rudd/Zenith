@@ -1,56 +1,232 @@
 def transpile_to_html(node):
-    result = ""
+    casing_dict = {
+        "Container": "div",
+        "Header": "h1",
+        "Block": "div",
+        "Button": "button",
+        "Paragraph": "p",
+        "Span": "span",
+        "Image": "img",
+        "Link": "a",
+        "List": "ul",
+        "ListItem": "li",
+        "Input": "input",
+        "Label": "label",
+        "Form": "form",
+        "Table": "table",
+        "TableHeader": "th",
+        "TableRow": "tr",
+        "TableData": "td",
+        "Select": "select",
+        "Option": "option",
+        "Nav": "nav",
+        "Section": "section",
+        "Article": "article",
+        "Footer": "footer",
+        "Header1": "h1",
+        "Header2": "h2",
+        "Header3": "h3",
+        "Header4": "h4",
+        "Header5": "h5",
+        "Header6": "h6",
+        "Strong": "strong",
+        "Emphasis": "em",
+        "Div": "div",
+        "Small": "small",
+        "Pre": "pre",
+        "Code": "code",
+        "Blockquote": "blockquote",
+        "Iframe": "iframe",
+        "Audio": "audio",
+        "Video": "video",
+        "Source": "source",
+        "Canvas": "canvas",
+        "HeaderGroup": "thead",
+        "BodyGroup": "tbody",
+        "FooterGroup": "tfoot",
+        "ListOrdered": "ol",
+        "DefinitionList": "dl",
+        "DefinitionTerm": "dt",
+        "DefinitionDescription": "dd",
+        "Figure": "figure",
+        "FigCaption": "figcaption",
+        "Progress": "progress",
+        "Meter": "meter",
+        "Time": "time",
+        "Mark": "mark",
+        "Ruby": "ruby",
+        "RubyText": "rt",
+        "RubyParenthesis": "rp",
+        "Details": "details",
+        "Summary": "summary",
+        "Command": "command",
+        "Menu": "menu",
+        "Dialog": "dialog",
+        "Slot": "slot",
+        "Template": "template",
+        "Slotable": "slot",
+        "Shadow": "shadow",
+        "Keygen": "keygen",
+        "Main": "main",
+        "Math": "math",
+        "Svg": "svg",
+        "ForeignObject": "foreignObject",
+        "Animation": "animate",
+        "Set": "set",
+        "Group": "g",
+        "Path": "path",
+        "Polygon": "polygon",
+        "Polyline": "polyline",
+        "Circle": "circle",
+        "Ellipse": "ellipse",
+        "Rect": "rect",
+        "Line": "line",
+        "Text": "text",
+        "Tspan": "tspan",
+        "TextPath": "textPath",
+        "Use": "use",
+        "Defs": "defs",
+        "Pattern": "pattern",
+        "LinearGradient": "linearGradient",
+        "RadialGradient": "radialGradient",
+        "Stop": "stop",
+        "Filter": "filter",
+        "FeBlend": "feBlend",
+        "FeColorMatrix": "feColorMatrix",
+        "FeComponentTransfer": "feComponentTransfer",
+        "FeComposite": "feComposite",
+        "FeConvolveMatrix": "feConvolveMatrix",
+        "FeDiffuseLighting": "feDiffuseLighting",
+        "FeDisplacementMap": "feDisplacementMap",
+        "FeDistantLight": "feDistantLight",
+        "FeFlood": "feFlood",
+        "FeGaussianBlur": "feGaussianBlur",
+        "FeImage": "feImage",
+        "FeMerge": "feMerge",
+        "FeMorphology": "feMorphology",
+        "FeOffset": "feOffset",
+        "FePointLight": "fePointLight",
+        "FeSpecularLighting": "feSpecularLighting",
+        "FeSpotLight": "feSpotLight",
+        "FeTile": "feTile",
+        "FeTurbulence": "feTurbulence",
+        "FeDx": "feDx",
+        "FeDy": "feDy",
+        "FeWidth": "feWidth",
+        "FeHeight": "feHeight",
+        "ForeignObject": "foreignObject",
+        "AnimateTransform": "animateTransform",
+        "AnimateMotion": "animateMotion",
+        "AnimateColor": "animateColor",
+        "Animate": "animate",
+        "SolidColor": "solidColor",
+        "FontFace": "font-face",
+        "Glyph": "glyph",
+        "MissingGlyph": "missing-glyph",
+        "Font": "font",
+        "FontFaceSrc": "src",
+        "FontFaceUri": "uri",
+        "FontFaceFormat": "format",
+        "FontFaceName": "name",
+        "Kbd": "kbd",
+        "Samp": "samp",
+        "Var": "var",
+        "Bdo": "bdo",
+        "Wbr": "wbr",
+        "Ins": "ins",
+        "Del": "del",
+        "NoScript": "noscript",
+        "Noscript": "noscript",
+        "Section": "section",
+    }
 
-    if node.tag_name == "Container":
-        result += "<div"
+    result = open_tag(casing_dict.get(node.tag_name, "div"), node.attributes)
+    result += process_content(node.content)
 
-        for attr_name, attr_value in node.attributes.items():
-            attr_name = transpile_attribute_name(attr_name)
-            result += f' {attr_name}="{attr_value}"'
+    for child_node in node.children:
+        result += transpile_to_html(child_node)
 
-        result += ">"
-
-        for child_node in node.children:
-            result += transpile_to_html(child_node)
-
-        result += "</div>"
-
-    elif node.tag_name == "Header":
-        result += "<h1"
-
-        for attr_name, attr_value in node.attributes.items():
-            attr_name = transpile_attribute_name(attr_name)
-            result += f' {attr_name}="{attr_value}"'
-
-        result += f">{node.content}</h1>"
-
-    elif node.tag_name == "Block":
-        result += "<div"
-
-        for attr_name, attr_value in node.attributes.items():
-            attr_name = transpile_attribute_name(attr_name)
-            result += f' {attr_name}="{attr_value}"'
-
-        result += ">"
-
-        for child_node in node.children:
-            result += transpile_to_html(child_node)
-
-        result += "</div>"
-
-    elif node.tag_name == "Button":
-        result += "<button"
-
-        for attr_name, attr_value in node.attributes.items():
-            attr_name = transpile_attribute_name(attr_name)
-            result += f' {attr_name}="{attr_value}"'
-
-        result += f">{node.content}</button>"
+    result += close_tag(casing_dict.get(node.tag_name, "div"))
 
     return result
 
 
+def open_tag(tag_name, attributes):
+    result = f"<{tag_name}"
+
+    for attr_name, attr_value in attributes.items():
+        attr_name = transpile_attribute_name(attr_name)
+        result += f' {attr_name}="{attr_value}"'
+
+    result += ">"
+
+    return result
+
+
+def process_content(content):
+    return content or ""
+
+
+def close_tag(tag_name):
+    return f"</{tag_name}>"
+
+
+
+
 def transpile_attribute_name(attribute_name):
-    if attribute_name == "idName":
-        return "id"
-    return attribute_name
+    attribute_mapping = {
+        "idName": "id",
+        "classType": "class",
+        "dataValue": "data-value",
+        "hrefLink": "href",
+        "srcUrl": "src",
+        "altText": "alt",
+        "forElement": "for",
+        "ariaLabel": "aria-label",
+        "ariaHidden": "aria-hidden",
+        "disabledState": "disabled",
+        "checkedState": "checked",
+        "requiredField": "required",
+        "placeholderText": "placeholder",
+        "maxLengthValue": "maxlength",
+        "tabIndexValue": "tabindex",
+        "targetFrame": "target",
+        "relAttribute": "rel",
+        "typeAttribute": "type",
+        "nameAttribute": "name",
+        "valueAttribute": "value",
+        "readOnlyState": "readonly",
+        "autocompleteValue": "autocomplete",
+        "patternAttribute": "pattern",
+        "stepValue": "step",
+        "minValue": "min",
+        "maxValue": "max",
+        "multipleFiles": "multiple",
+        "colsNumber": "cols",
+        "rowsNumber": "rows",
+        "wrapAttribute": "wrap",
+        "downloadFilename": "download",
+        "mediaAttribute": "media",
+        "targetBlank": "target",
+        "targetSelf": "target",
+        "targetParent": "target",
+        "targetTop": "target",
+        "autoplayAttribute": "autoplay",
+        "controlsAttribute": "controls",
+        "loopAttribute": "loop",
+        "mutedAttribute": "muted",
+        "preloadAttribute": "preload",
+        "posterAttribute": "poster",
+        "openNewTab": "target",
+        "spellcheckAttribute": "spellcheck",
+        "translateAttribute": "translate",
+        "contenteditableAttribute": "contenteditable",
+        "dirAttribute": "dir",
+        "langAttribute": "lang",
+        "accessKeyAttribute": "accesskey",
+        "draggableAttribute": "draggable",
+        "hiddenAttribute": "hidden",
+        "roleAttribute": "role",
+    }
+
+    return attribute_mapping.get(attribute_name, attribute_name)
