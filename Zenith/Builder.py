@@ -22,7 +22,6 @@ class Builder():
             ast = langAST.build_ast(tokens)
             transpiled = langTranspiler.transpile_to_html(ast)
             
-            print(transpiled)
             NEW_BUILDER_BUILT[NAME] = f"""{transpiled}"""
             
             return NEW_BUILDER_BUILT

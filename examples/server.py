@@ -25,16 +25,14 @@ style = Zenith.Stylesheet.new({
     'id.some_button': {
         'width': 20,
         'height': 20,
-        'someother': 15
     },
     'class.some_button': {
         'width': 20,
         'height': 20,
-        'someother': 15
     }
 })
 
 style.apply(builder, "home")
-print(style.STYLE_DICTIONARY)
+# print(style.STYLE_DICTIONARY)
 
 app.serve()

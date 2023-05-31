@@ -365,14 +365,26 @@ class Style:
     def __init__(self):
         self.STYLE_DICTIONARY = dict()
 
+    def formatSelector(self, selector):
+        TYPE_OF_SELECTOR = ["class", "id"]
+        formatted_selector = {}
+        for selector_type in TYPE_OF_SELECTOR:
+            if selector.startswith(selector_type + "."):
+                formatted_selector['type'] = selector_type
+                formatted_selector['name'] = selector[len(selector_type) + 1:]
+                break
+        return formatted_selector
+
     def apply(self, BUILDER: Builder, BUILDER_ROUTE: str):
         STYLE_TAG = "style"
-        FINAL_DATA = str
+        CSS_SELECTORS = []
+        SELECTORS = {"class": ".", "id": "#"}
+        
         for SELECTOR in self.STYLE_DICTIONARY:
-            print(SELECTOR)
-
-        ...
-
+            formatted_selector = self.formatSelector(SELECTOR)
+            print(formatted_selector)
+            CSS_SELECTORS.append(formatted_selector)
+        return CSS_SELECTORS
 
 class Stylesheet:
     def new(style: dict, **kwargs) -> Style:
@@ -381,7 +393,8 @@ class Stylesheet:
         for selector, attributes in style.items():
             for attribute, value in attributes.items():
                 if attribute not in styleAttributes:
-                    print(f"Unrecognized Style Attribute \"{attribute}\"")
+                    print(f"Unrecognized Style Attribute \"{attribute}\" in @Stylesheet")
+                    exit(1)
                 else:
                     if selector not in stylesheet:
                         stylesheet[selector] = {}
