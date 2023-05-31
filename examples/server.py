@@ -3,15 +3,7 @@ import Zenith
 
 app = Zenith.WApp()
 
-homePageContent = """
-    <Container idName="container" className="dictionary-container">
-        <Container className="term">
-            <Link className="term-title" hrefLink="https://github.com/Ryan-Rudd/Zenith">Zenith</Link>
-            <Paragraph className="term-description">Zee-nith</Paragraph>
-            <Paragraph className="term-definition">A Python framework that revolutionizes web development through its declarative and efficient UI components, enabling the creation of interactive and scalable websites.</Paragraph>
-        </Container>
-    </Container>
-"""
+homePageContent = Zenith.getDotZenith('./page.zenith')
 
 builder = Zenith.Builder({"home": homePageContent})
 built = builder.Build()

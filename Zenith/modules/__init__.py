@@ -1,0 +1,1 @@
+from .ReadFromZenithFile import getDotZenith
