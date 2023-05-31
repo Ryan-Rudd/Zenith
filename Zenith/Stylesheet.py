@@ -378,24 +378,30 @@ class Style:
     def apply(self, BUILDER: Builder, BUILDER_ROUTE: str):
         STYLE_TAG = "style"
         CSS_SELECTORS = []
-        CSS_CONVERTED = str()
-        
+        CSS_CONVERTED = ""
+
         for SELECTOR in self.STYLE_DICTIONARY:
             formatted_selector = self.formatSelector(SELECTOR)
-            print(formatted_selector)
-            CSS_SELECTORS.append(formatted_selector)
-            
-        for index, CSS_SELECTOR in enumerate( CSS_SELECTORS ):
-            SELECTOR_TYPE = CSS_SELECTORS[index]['type']
-            SELECTOR_NAME = CSS_SELECTORS[index]['name']
-            SELECTOR_TYPE_VAL_TRANS = str()
+            CSS_SELECTORS.append({"selector": formatted_selector, "attributes": self.STYLE_DICTIONARY[SELECTOR]})
+
+        for selector_data in CSS_SELECTORS:
+            selector = selector_data['selector']
+            attributes = selector_data['attributes']
+            SELECTOR_TYPE = selector['type']
+            SELECTOR_NAME = selector['name']
+            SELECTOR_TYPE_VAL_TRANS = ""
             if SELECTOR_TYPE == "class":
                 SELECTOR_TYPE_VAL_TRANS = "."
             if SELECTOR_TYPE == "id":
                 SELECTOR_TYPE_VAL_TRANS = "#"
-                
-            CSS_CONVERTED = CSS_CONVERTED + f"{SELECTOR_TYPE_VAL_TRANS}{SELECTOR_NAME}"+"{}\n"
+
+            CSS_CONVERTED += f"{SELECTOR_TYPE_VAL_TRANS}{SELECTOR_NAME}" + "{"
+            for attribute, value in attributes.items():
+                CSS_CONVERTED += f"{attribute}: {value};"
+            CSS_CONVERTED += "} "
+
         return CSS_CONVERTED
+
 
 class Stylesheet:
     def new(style: dict, **kwargs) -> Style:
@@ -413,4 +419,3 @@ class Stylesheet:
         stylesheet_object = Style()
         stylesheet_object.STYLE_DICTIONARY = stylesheet
         return stylesheet_object
-
