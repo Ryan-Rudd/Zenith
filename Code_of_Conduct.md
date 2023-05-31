@@ -35,7 +35,7 @@ This Code of Conduct applies to all spaces associated with our project, includin
 
 ## Enforcement
 
-Instances of abusive, harassing, or otherwise unacceptable behavior should be reported to the project team by contacting us at [INSERT EMAIL ADDRESS]. All complaints will be treated with the utmost seriousness and will be thoroughly reviewed and investigated. We are committed to responding to each incident in a manner that is deemed necessary and appropriate based on the circumstances. Confidentiality will be maintained by the project team with respect to the reporter of an incident. Specific details regarding the enforcement policies may be made available separately.
+Instances of abusive, harassing, or otherwise unacceptable behavior should be reported to the project team by contacting us at `rsrudd@gmail.com`. All complaints will be treated with the utmost seriousness and will be thoroughly reviewed and investigated. We are committed to responding to each incident in a manner that is deemed necessary and appropriate based on the circumstances. Confidentiality will be maintained by the project team with respect to the reporter of an incident. Specific details regarding the enforcement policies may be made available separately.
 
 Project maintainers who fail to adhere to or enforce the Code of Conduct in good faith may face temporary or permanent consequences, as determined by other members of the project's leadership.
 
