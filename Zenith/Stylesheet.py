@@ -375,7 +375,7 @@ class Style:
                 break
         return formatted_selector
 
-    def apply(self, BUILDER: Builder, BUILDER_ROUTE: str):
+    def apply(self, BUILT_OBJECT: dict, BUILDER_ROUTE: str):
         STYLE_TAG = "style"
         CSS_SELECTORS = []
         CSS_CONVERTED = ""
@@ -400,7 +400,10 @@ class Style:
                 CSS_CONVERTED += f"{attribute}: {value};"
             CSS_CONVERTED += "} "
 
-        return CSS_CONVERTED
+        BUILT_CONTENT = BUILT_OBJECT.get(BUILDER_ROUTE)
+        CSS_TRANSPILED_CONTENT = BUILT_CONTENT + f"\n<style>{CSS_CONVERTED}</style>"
+        BUILT_OBJECT[BUILDER_ROUTE] = CSS_TRANSPILED_CONTENT
+        return 
 
 
 class Stylesheet:

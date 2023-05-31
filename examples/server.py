@@ -7,7 +7,7 @@ homePageContent = """
     <Title>Test Server</Title>
     <Container>
         <Header idName="header">Hello world from Zenith</Header>
-        <Button idName="test-button">Press Me!</Button>
+        <Button className="test-button">Press Me!</Button>
         <Select>
             <Option>Hello</Option>
         </Select>
@@ -18,21 +18,21 @@ homePageContent = """
 builder = Zenith.Builder({"home": homePageContent})
 built = builder.Build()
 
-for route in builder.getRoutes():
-    app.register_route(f'{route}', built[route])
-
 style = Zenith.Stylesheet.new({
-    'id.some_button_id': {
-        'width': 20,
-        'height': 20,
+    'id.header': {
+        'color': 'red',
     },
-    'class.some_button_class': {
-        'width': 20,
+    'class.test-button': {
+        'width': 250,
         'height': 20,
     }
 })
 
-print(style.apply(builder, "home"))
+style.apply(built, "home")
+
+for route in builder.getRoutes():
+    app.register_route(f'{route}', built[route])
+
 # print(style.STYLE_DICTIONARY)
 
 app.serve()

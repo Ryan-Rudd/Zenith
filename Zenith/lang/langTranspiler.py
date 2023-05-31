@@ -169,7 +169,7 @@ def close_tag(tag_name):
 def transpile_attribute_name(attribute_name):
     attribute_mapping = {
         "idName": "id",
-        "classType": "class",
+        "className": "class",
         "dataValue": "data-value",
         "hrefLink": "href",
         "srcUrl": "src",
