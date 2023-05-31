@@ -1,3 +1,8 @@
+
+<p align="center">
+<img src="./docs/images/Upscaled-Zenith.png" style="align: center; width: 150px; text-align: center; display: flex;">
+</p><br>
+
 # Zenith
 ![Python Version](https://img.shields.io/badge/Python-3.8-brightgreen.svg)
 ![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
@@ -5,8 +10,6 @@
 ![Downloads](https://img.shields.io/pypi/dm/ZenithLib)
 ![GitHub Issues](https://img.shields.io/github/issues/Ryan-Rudd/Zenith)
 ![GitHub Pull Requests](https://img.shields.io/github/issues-pr/Ryan-Rudd/Zenith)
-
-<img src="./docs/images/Upscaled-Zenith.png.png" style="width: 200px;">
 
 Zenith is a powerful Python framework that revolutionizes web development. It provides a declarative approach to designing efficient UI components, making it easier than ever to build interactive and scalable websites.
 
