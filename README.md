@@ -1,10 +1,12 @@
 # Zenith
 ![Python Version](https://img.shields.io/badge/Python-3.8-brightgreen.svg)
 ![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
+![Build Status](https://img.shields.io/github/workflow/status/Ryan-Rudd/Zenith/CI)
+![Coverage](https://img.shields.io/codecov/c/github/Ryan-Rudd/Zenith)
+![Code Style](https://img.shields.io/badge/code%20style-black-000000.svg)
+
 
 Zenith is a powerful Python framework that revolutionizes web development. It provides a declarative approach to designing efficient UI components, making it easier than ever to build interactive and scalable websites.
-
-![Zenith Usage](./docs/zenith_usage.png)
 
 ## Features
 
