@@ -7,7 +7,7 @@
 ![GitHub Pull Requests](https://img.shields.io/github/issues-pr/Ryan-Rudd/Zenith)
 
 
-
+![LOGO](docs/images/Zenith.png)
 Zenith is a powerful Python framework that revolutionizes web development. It provides a declarative approach to designing efficient UI components, making it easier than ever to build interactive and scalable websites.
 
 ## Features
