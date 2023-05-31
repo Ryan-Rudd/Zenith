@@ -1,25 +1,32 @@
-<a href="https://www.buymeacoffee.com/rydev" target="_blank"><img src="https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png" alt="Buy Me A Coffee" style="height: 41px !important;width: 174px !important;box-shadow: 0px 3px 2px 0px rgba(190, 190, 190, 0.5) !important;-webkit-box-shadow: 0px 3px 2px 0px rgba(190, 190, 190, 0.5) !important;" ></a>
-
 # Zenith
- Zenith is a powerful Python framework that revolutionizes web development by enabling declarative and efficient UI components for building interactive and scalable websites.
+![Python Version](https://img.shields.io/badge/Python-3.8-brightgreen.svg)
+![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
 
-# Usage 
-## Installation 
-```
+Zenith is a powerful Python framework that revolutionizes web development. It provides a declarative approach to designing efficient UI components, making it easier than ever to build interactive and scalable websites.
+
+![Zenith Usage](./docs/zenith_usage.png)
+
+## Features
+
+- **Efficient UI components**: Zenith makes it easy to build and manage reusable UI components.
+- **Scalable**: Designed with large-scale applications in mind, Zenith helps you build websites that can grow with your needs.
+- **Declarative**: Zenith's declarative style makes your code easier to understand and maintain.
+
+## Getting Started
+
+### Installation
+
+To install Zenith, simply run:
+
+```shell
 pip install ZenithLib
 ```
-## Start a server
+
+# Basic Usage 
+
+Here's a basic example of how to use Zenith to create a webpage:
+
 ```python
-import Zenith
-
-app = Zenith.WApp()
-
-app.serve()
-```
-
-## Creating a basic webpage ( Coming Soon )
-```python
-
 import Zenith
 
 app = Zenith.WApp()
@@ -29,13 +36,12 @@ homePageContent = """
         <Header idName="header">Hello world from Zenith</Header>
     </Container>
 """
-    
+
 builder = Zenith.Builder({"home": homePageContent})
 built = builder.Build()
 
 for route in builder.getRoutes():
     app.register_route(f'{route}', built[route])
-    
 
 stylesheet = Stylesheet(builder, "HomePage", {
     "id.header": 
@@ -45,5 +51,19 @@ stylesheet = Stylesheet(builder, "HomePage", {
     }
 })
 
-app.serve()
+app.serve
 ```
+
+# Documentation
+
+For more detailed information on using Zenith, please refer to our [documentation](/docs).
+
+# Contributing 
+We welcome contributions of all kinds. Check out our [contributing guide](./CONTRIBUTING.md) for more details on how you can help improve Zenith.
+
+# License 
+
+Zenith is released under the MIT License. See [LICENSE](./LICENSE) for details.
+
+# Connect With Us
+Have questions or suggestions? Please [open an issue on GitHub](https://github.com/Ryan-Rudd/Zenith/issues) or [send us a pull request](https://github.com/Ryan-Rudd/Zenith/pulls).
