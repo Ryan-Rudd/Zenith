@@ -1,5 +1,6 @@
 def transpile_to_html(node):
     casing_dict = {
+        "Title": "title",
         "Container": "div",
         "Header": "h1",
         "Block": "div",

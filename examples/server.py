@@ -4,8 +4,9 @@ import Zenith
 app = Zenith.WApp()
 
 homePageContent = """
-    <Title>Test Server</Title>
     <Container>
+        <Title>Test Server</Title>
+
         <Header idName="header">Hello world from Zenith</Header>
         <Button className="test-button">Press Me!</Button>
         <Select>
