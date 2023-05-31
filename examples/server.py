@@ -3,6 +3,7 @@ import Zenith
 app = Zenith.WApp()
 
 homePageContent = """
+    <Title>Test Server</Title>
     <Container>
         <Header idName="header">Hello world from Zenith</Header>
         <Button idName="test-button">Press Me!</Button>
@@ -10,7 +11,6 @@ homePageContent = """
             <Option>Hello</Option>
         </Select>
         <Input typeAttribute="number"/>
-        <Math class=chem> Fe_2_^2+^Cr_2_O_4_</Math>
     </Container>
 """
     

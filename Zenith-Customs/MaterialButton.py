@@ -5,3 +5,5 @@ class MATERIAL_SLIDER(ZENITH_COMPONENT_CONSTRUCTOR):
         self.CALLABLE_NAME = "MATERIAL_BUTTON"
         self.ZENITH_COMPONENT_BASE = "Button"
         self.PROPERTIES = {"width": 200}
+        
+    
